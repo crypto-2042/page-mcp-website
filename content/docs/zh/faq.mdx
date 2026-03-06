@@ -1,0 +1,19 @@
+## 必须依赖浏览器原生 WebMCP 吗？
+
+不需要。通过 `installWebMcpPolyfill` 可在常规浏览器中运行 MCP 对齐能力。
+
+## 最小依赖是什么？
+
+只需要 `@page-mcp/core`。聊天组件和框架适配层是可选项。
+
+## Host 与 Client 如何通信？
+
+通过 `EventBus` RPC。在同页部署时建议共享同一个 `EventBus`。
+
+## Resources 与 Skills 属于 WebMCP 标准吗？
+
+不属于。Tools 与 WebMCP 对齐，Resources/Skills 是 SDK 扩展能力。
+
+## 聊天组件可以接非 OpenAI 后端吗？
+
+可以，`@page-mcp/chat` 支持 OpenAI 兼容 `baseURL` 或代理 `endpoint`。

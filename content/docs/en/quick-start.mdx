@@ -1,0 +1,42 @@
+## Installation
+
+```bash
+npm install @page-mcp/core
+# optional
+npm install @page-mcp/chat
+npm install @page-mcp/react @page-mcp/vue3 @page-mcp/vue2
+```
+
+## Minimal Vanilla Flow
+
+```ts
+import { PageMcpHost, PageMcpClient, EventBus, installWebMcpPolyfill } from '@page-mcp/core';
+
+const bus = new EventBus();
+const host = new PageMcpHost({ name: 'my-app', version: '1.0', bus });
+
+host.registerTool({
+  name: 'searchProducts',
+  description: 'Search products by keyword',
+  inputSchema: {
+    type: 'object',
+    properties: { keyword: { type: 'string' } },
+    required: ['keyword']
+  },
+  execute: async (input) => searchProducts(input.keyword)
+});
+
+host.start();
+installWebMcpPolyfill(host);
+
+const client = new PageMcpClient({ bus });
+await client.connect();
+await client.callTool('searchProducts', { keyword: 'headphones' });
+```
+
+## Practical Notes
+
+- Keep one shared `EventBus` in the same page context.
+- Start host before client connection.
+- Use `inputSchema` and `annotations.readOnlyHint` for better agent behavior.
+- Use `registerResource` and `registerSkill` for richer page capability modeling.

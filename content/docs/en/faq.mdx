@@ -1,0 +1,19 @@
+## Do I need native WebMCP support?
+
+No. `installWebMcpPolyfill` lets you run in regular browsers while still using MCP-aligned tool definitions.
+
+## What is the minimum package set?
+
+`@page-mcp/core` only. Chat widget and framework adapters are optional.
+
+## How do host and client communicate?
+
+They use `EventBus` RPC. In same-page deployments, share one `EventBus` instance.
+
+## Are resources and skills WebMCP standard?
+
+No. Tools are aligned with WebMCP; resources and skills are SDK extensions.
+
+## Can chat use non-OpenAI services?
+
+Yes. Use OpenAI-compatible `baseURL` or a proxy `endpoint` in `@page-mcp/chat` config.

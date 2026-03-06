@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cyber-Toolkit | Neural-Link CLI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff003b",
+                        "accent-yellow": "#fcee0a",
+                        "background-light": "#f8f5f6",
+                        "background-dark": "#0a0506",
+                        "panel-dark": "#1a0b0e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .scanlines {
+            background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+        }
+        .chromatic-text {
+            text-shadow: 2px 0px 0px rgba(255,0,59,0.75), -2px 0px 0px rgba(0,255,255,0.75);
+        }
+        .angular-cut {
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+        }
+        .angular-cut-inverse {
+            clip-path: polygon(15px 0, 100% 0, 100% 100%, 0 100%, 0 15px);
+        }
+        .glitch-border {
+            border-left: 4px solid #ff003b;
+            position: relative;
+        }
+        .glitch-border::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10px;
+            height: 10px;
+            background: #fcee0a;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white overflow-x-hidden">
+<div class="fixed inset-0 scanlines z-50 pointer-events-none opacity-20"></div>
+<div class="relative flex flex-col min-h-screen">
+<!-- Header / Diegetic Tabs -->
+<header class="sticky top-0 z-40 bg-background-dark/90 backdrop-blur-md border-b-2 border-primary/30">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-primary flex items-center justify-center angular-cut">
+<span class="material-symbols-outlined text-white text-2xl">terminal</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-primary tracking-widest uppercase">System.V21.77</span>
+<h1 class="text-xl font-black tracking-tighter uppercase italic italic chromatic-text">Cyber-Toolkit</h1>
+</div>
+</div>
+<nav class="hidden md:flex items-center h-full">
+<a class="px-8 h-full flex items-center text-sm font-black tracking-[0.2em] border-b-4 border-primary bg-primary/10 text-primary" href="#">HOME</a>
+<a class="px-8 h-full flex items-center text-sm font-black tracking-[0.2em] border-b-4 border-transparent hover:border-accent-yellow hover:text-accent-yellow transition-colors" href="#">DOCS</a>
+<a class="px-8 h-full flex items-center text-sm font-black tracking-[0.2em] border-b-4 border-transparent hover:border-accent-yellow hover:text-accent-yellow transition-colors" href="#">SPECS</a>
+<a class="px-8 h-full flex items-center text-sm font-black tracking-[0.2em] border-b-4 border-transparent hover:border-accent-yellow hover:text-accent-yellow transition-colors" href="#">ACCESS</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="hidden lg:flex flex-col text-right mr-4">
+<span class="text-[10px] opacity-50 uppercase">Network Status</span>
+<span class="text-xs text-green-500 font-mono">CONNECTED // 127.0.0.1</span>
+</div>
+<button class="bg-primary hover:bg-white hover:text-primary transition-all px-6 py-2 text-sm font-black tracking-widest angular-cut uppercase">
+                        Initiate
+                    </button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<main class="flex-1">
+<section class="relative pt-20 pb-32 overflow-hidden border-b border-primary/20">
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+<div class="z-10">
+<div class="inline-block bg-primary text-white text-xs font-bold px-3 py-1 mb-6 angular-cut uppercase tracking-widest">Critical Module Loaded</div>
+<h2 class="text-6xl md:text-8xl font-black leading-none tracking-tighter uppercase mb-6 italic chromatic-text">
+                            Terminal<br/><span class="text-primary">Dominance</span>
+</h2>
+<p class="text-xl text-slate-400 max-w-lg mb-10 leading-relaxed border-l-2 border-accent-yellow pl-6">
+                            Deploy the ultimate CLI and SDK for high-frequency neural-link operations. Low latency, high impact. Engineered for the digital underground.
+                        </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-white px-10 py-4 text-lg font-black tracking-widest uppercase angular-cut hover:translate-x-1 hover:-translate-y-1 transition-transform">
+                                Download Binary
+                            </button>
+<button class="border-2 border-primary/50 text-primary px-10 py-4 text-lg font-black tracking-widest uppercase hover:bg-primary/10 transition-colors">
+                                View Specs
+                            </button>
+</div>
+</div>
+<div class="relative">
+<div class="relative z-10 p-4 border border-primary/30 bg-panel-dark/80 angular-cut-inverse">
+<div class="aspect-square bg-slate-900 overflow-hidden relative">
+<img alt="Cyberpunk Technical Interface" class="w-full h-full object-cover opacity-60 mix-blend-screen" data-alt="Intricate blue and red HUD technical diagram UI" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLwWgg2hNwPK7AK3MJKVsEgw9Btbfgk5gss-cHWBCQQBga092HwO1JCIs5WADUpwmjPzHQXtJdB0TlaabSDEQLgZm2gsbsa4Q_u3-O7zUpqOaEZybyxwdU_kDJCLF30yN3j4KOlwoyjQfdUJz-Ddr8AUen95fb-Tq0ZRVAyneaRpH8LpBs8j4euSwyucNNNIHH5rXhQbER1mg9aKl1zOjPHfi298x1xvU_Wcfw70HOICYIpS8uAwUT0DjPXrMoSu8FyM2DQn5rF0M"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<div class="w-20 h-1 bg-primary"></div>
+<div class="w-12 h-1 bg-accent-yellow"></div>
+</div>
+</div>
+</div>
+<!-- Background Accents -->
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-[100px]"></div>
+<div class="absolute -bottom-20 -left-20 w-80 h-80 bg-accent-yellow/10 rounded-full blur-[120px]"></div>
+</div>
+</div>
+</section>
+<!-- 3-Column Features Section -->
+<section class="py-24 bg-background-dark/50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex items-center gap-6 mb-16">
+<h3 class="text-3xl font-black uppercase tracking-tighter italic chromatic-text">System Modules</h3>
+<div class="flex-1 h-[2px] bg-primary/20"></div>
+<div class="text-xs font-mono text-primary">CORE_CAPABILITIES.PKG</div>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Panel 1: Red -->
+<div class="group relative p-8 bg-panel-dark border-t-4 border-primary angular-cut hover:bg-primary/5 transition-colors">
+<div class="text-primary mb-6">
+<span class="material-symbols-outlined text-5xl">memory</span>
+</div>
+<h4 class="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-primary transition-colors">Neural-Link SDK</h4>
+<p class="text-slate-400 mb-6 leading-relaxed">
+                                Deep integration with low-level kernel drivers for maximum throughput. Synchronize local nodes with global networks in sub-millisecond cycles.
+                            </p>
+<div class="text-[10px] font-mono text-primary/50 uppercase tracking-[0.3em]">Module: Alpha-9</div>
+</div>
+<!-- Panel 2: Yellow -->
+<div class="group relative p-8 bg-panel-dark border-t-4 border-accent-yellow angular-cut hover:bg-accent-yellow/5 transition-colors">
+<div class="text-accent-yellow mb-6">
+<span class="material-symbols-outlined text-5xl">security</span>
+</div>
+<h4 class="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-accent-yellow transition-colors">Glitch Protocol</h4>
+<p class="text-slate-400 mb-6 leading-relaxed">
+                                Automated diagnostic tools for identifying system-wide vulnerabilities. Bypass standard encryption with proprietary noise-injection algorithms.
+                            </p>
+<div class="text-[10px] font-mono text-accent-yellow/50 uppercase tracking-[0.3em]">Module: Omega-4</div>
+</div>
+<!-- Panel 3: Black/White -->
+<div class="group relative p-8 bg-panel-dark border-t-4 border-white angular-cut hover:bg-white/5 transition-colors">
+<div class="text-white mb-6">
+<span class="material-symbols-outlined text-5xl">code_blocks</span>
+</div>
+<h4 class="text-2xl font-black uppercase mb-4 tracking-tight group-hover:text-white transition-colors">Zero-Day Access</h4>
+<p class="text-slate-400 mb-6 leading-relaxed">
+                                Real-time decryption and bypass modules for secure data extraction. Every executable is hardened against trace-back detection systems.
+                            </p>
+<div class="text-[10px] font-mono text-white/50 uppercase tracking-[0.3em]">Module: Stealth-X</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Terminal Section -->
+<section class="py-24 border-t border-primary/20 bg-background-dark">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-5 gap-12">
+<div class="lg:col-span-2">
+<h3 class="text-4xl font-black uppercase tracking-tighter mb-6 italic chromatic-text">Executable Preview</h3>
+<p class="text-slate-400 mb-8">
+                                Initialize your environment with a single command. The Cyber-Toolkit environment is designed to feel like an extension of your neural interface.
+                            </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-primary">
+<span class="material-symbols-outlined">check_circle</span>
+                                    Instant Node Provisioning
+                                </li>
+<li class="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-accent-yellow">
+<span class="material-symbols-outlined">check_circle</span>
+                                    Encrypted Buffer Streams
+                                </li>
+<li class="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-white">
+<span class="material-symbols-outlined">check_circle</span>
+                                    Ghost Protocol Routing
+                                </li>
+</ul>
+</div>
+<div class="lg:col-span-3">
+<div class="bg-black border border-primary/30 p-1 shadow-[0_0_30px_rgba(255,0,59,0.1)]">
+<div class="bg-panel-dark p-6 font-mono text-sm overflow-hidden relative">
+<!-- Terminal Header -->
+<div class="flex items-center justify-between mb-4 border-b border-primary/20 pb-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<span class="text-[10px] uppercase text-primary/70">root@cyber-toolkit: ~/dev</span>
+</div>
+<span class="text-[10px] text-slate-600">SSH // 256-BIT</span>
+</div>
+<!-- Code Content -->
+<div class="space-y-2">
+<p class="text-slate-500">$ curl -sL https://install.cyber-toolkit.io | bash</p>
+<p class="text-green-500 font-bold">&gt;&gt; Downloading manifest...</p>
+<p class="text-green-500 font-bold">&gt;&gt; Checking hardware compatibility... [OK]</p>
+<p class="text-slate-300">$ cyber-tk init --neural-link</p>
+<p class="text-accent-yellow mt-4">Initializing Cyber-Toolkit v2.4.0...</p>
+<p class="text-slate-400 pl-4">| Node Status: <span class="text-primary italic">ACTIVE</span></p>
+<p class="text-slate-400 pl-4">| Buffer Size: <span class="text-primary italic">1024GB</span></p>
+<p class="text-slate-400 pl-4">| Latency: <span class="text-primary italic">0.02ms</span></p>
+<p class="text-white mt-4 font-black animate-pulse">_</p>
+</div>
+<div class="absolute bottom-4 right-4 text-[8px] opacity-20 rotate-90 origin-bottom-right uppercase tracking-[1em]">SYSTEM_READY</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark border-t-2 border-primary/30 py-12">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 bg-primary angular-cut"></div>
+<span class="font-black tracking-tighter uppercase chromatic-text text-lg italic">Cyber-Toolkit</span>
+</div>
+<p class="text-xs text-slate-500 uppercase tracking-widest">© 2077 Night City Infrastructure. All rights reserved.</p>
+</div>
+<div class="flex gap-12 text-xs font-black uppercase tracking-widest text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Privacy_Log</a>
+<a class="hover:text-primary transition-colors" href="#">Terms_of_Use</a>
+<a class="hover:text-primary transition-colors" href="#">GitHub</a>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="text-[10px] text-primary/60 uppercase font-mono">Hardware Acceleration: ON</span>
+<span class="text-[10px] text-accent-yellow/60 uppercase font-mono">Version: 2.1.77-STABLE</span>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

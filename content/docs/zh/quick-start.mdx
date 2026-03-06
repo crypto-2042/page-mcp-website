@@ -1,0 +1,42 @@
+## 安装
+
+```bash
+npm install @page-mcp/core
+# 可选
+npm install @page-mcp/chat
+npm install @page-mcp/react @page-mcp/vue3 @page-mcp/vue2
+```
+
+## 最小可用流程（Vanilla）
+
+```ts
+import { PageMcpHost, PageMcpClient, EventBus, installWebMcpPolyfill } from '@page-mcp/core';
+
+const bus = new EventBus();
+const host = new PageMcpHost({ name: 'my-app', version: '1.0', bus });
+
+host.registerTool({
+  name: 'searchProducts',
+  description: '按关键词搜索商品',
+  inputSchema: {
+    type: 'object',
+    properties: { keyword: { type: 'string' } },
+    required: ['keyword']
+  },
+  execute: async (input) => searchProducts(input.keyword)
+});
+
+host.start();
+installWebMcpPolyfill(host);
+
+const client = new PageMcpClient({ bus });
+await client.connect();
+await client.callTool('searchProducts', { keyword: 'headphones' });
+```
+
+## 实践建议
+
+- 同页场景共享同一个 `EventBus`。
+- 先启动 host，再连接 client。
+- 使用 `inputSchema` 与 `annotations.readOnlyHint` 优化 Agent 调用质量。
+- 使用 `registerResource` 与 `registerSkill` 描述更复杂页面能力。
