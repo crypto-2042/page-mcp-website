@@ -2,6 +2,7 @@ const zh = {
   nav: {
     home: '首页',
     docs: '文档',
+    example: '示例站点',
     github: 'GitHub'
   },
   common: {

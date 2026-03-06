@@ -1,5 +1,5 @@
 export type SiteDictionary = {
-  nav: { home: string; docs: string; github: string };
+  nav: { home: string; docs: string; example: string; github: string };
   common: { languageLabel: string };
   home: {
     kicker: string;

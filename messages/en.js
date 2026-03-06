@@ -2,6 +2,7 @@ const en = {
   nav: {
     home: 'Home',
     docs: 'Docs',
+    example: 'Example',
     github: 'GitHub'
   },
   common: {

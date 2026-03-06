@@ -28,6 +28,9 @@ export function SiteHeader({ locale, dictionary }: Props) {
           <Link href={`/${locale}/docs`} className={isDocs ? 'active' : ''}>
             {dictionary.nav.docs}
           </Link>
+          <a href="https://example.page-mcp.org" target="_blank" rel="noreferrer">
+            {dictionary.nav.example}
+          </a>
           <a href={GITHUB_URL} target="_blank" rel="noreferrer">
             {dictionary.nav.github}
           </a>
