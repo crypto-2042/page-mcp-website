@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getDictionary, isValidLocale } from '@/lib/i18n';
-import { GITHUB_URL } from '@/lib/site';
+import { GITHUB_URL, SITE_NAME, SITE_URL } from '@/lib/site';
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -15,9 +15,35 @@ export default async function HomePage({ params }: Props) {
   }
 
   const dict = getDictionary(locale);
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        name: SITE_NAME,
+        url: SITE_URL,
+        inLanguage: locale,
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: `${SITE_URL}/${locale}/docs`,
+          'query-input': 'required name=search_term_string'
+        }
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: SITE_NAME,
+        applicationCategory: 'DeveloperApplication',
+        operatingSystem: 'Web',
+        url: SITE_URL,
+        codeRepository: GITHUB_URL,
+        keywords: 'webmcp, ai mcp, mcp skills, mcp tools, webmcp polyfill'
+      }
+    ]
+  };
 
   return (
     <div className="container home-wrap">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <section className="hero panel angular-cut">
         <div className="hero-grid">
           <div>
