@@ -18,7 +18,7 @@ export default async function DocsPage({ params }: Props) {
   return (
     <div className="container docs-wrap">
       <section className="panel docs-hero angular-cut">
-        <p className="kicker">SDK DOCS</p>
+        <p className="kicker">{dict.docs.kicker}</p>
         <h1 className="title">{dict.docs.title}</h1>
         <p>{dict.docs.subtitle}</p>
       </section>

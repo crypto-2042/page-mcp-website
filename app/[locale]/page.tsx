@@ -36,7 +36,7 @@ export default async function HomePage({ params }: Props) {
         operatingSystem: 'Web',
         url: SITE_URL,
         codeRepository: GITHUB_URL,
-        keywords: 'webmcp, ai mcp, mcp skills, mcp tools, webmcp polyfill'
+        keywords: 'page mcp, webmcp, browser extension, ai agent tools'
       }
     ]
   };
@@ -67,11 +67,11 @@ export default async function HomePage({ params }: Props) {
           </div>
 
           <aside className="terminal panel angular-cut-inverse">
-            <div className="terminal-head">root@page-mcp:~</div>
+            <div className="terminal-head">{dict.home.terminalHead}</div>
             <code>$ {dict.home.installCommand}</code>
-            <code>&gt; registerTool + registerResource + registerSkill</code>
-            <code>&gt; connect client and invoke by MCP RPC</code>
-            <code className="ok">status: ready</code>
+            <code>&gt; {dict.home.terminalLine1}</code>
+            <code>&gt; {dict.home.terminalLine2}</code>
+            <code className="ok">{dict.home.terminalStatus}</code>
           </aside>
         </div>
       </section>

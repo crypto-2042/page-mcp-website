@@ -1,8 +1,8 @@
-# Page MCP SDK Official Site Implementation Plan
+# Page MCP Official Site Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Build a launchable bilingual (EN/ZH) Next.js official website skeleton for page-mcp-sdk with Home + Docs structure.
+**Goal:** Build a launchable bilingual (EN/ZH) Next.js official website foundation for Page MCP with Home + Docs structure.
 
 **Architecture:** Use Next.js App Router with locale-prefixed routes (`/en`, `/zh`) as the single source of truth. Keep i18n lightweight via typed local dictionaries and centralized locale validation helpers. Build reusable layout/header/switcher components and style with a cyber-tech visual system inspired by `ui/code.html`.
 
@@ -10,7 +10,7 @@
 
 ---
 
-### Task 1: Initialize Next.js app skeleton
+### Task 1: Initialize the Next.js app foundation
 
 **Files:**
 - Create: `package.json`
@@ -56,7 +56,7 @@ Expected: PASS
 
 ```bash
 git add package.json next.config.ts tsconfig.json next-env.d.ts app/layout.tsx app/page.tsx app/globals.css .gitignore eslint.config.mjs
-git commit -m "chore: initialize next.js app skeleton"
+git commit -m "chore: initialize next.js app foundation"
 ```
 
 ### Task 2: Add locale infrastructure and dictionaries
@@ -157,7 +157,7 @@ Expected: PASS
 
 ```bash
 git add app/[locale] lib/i18n.ts messages tests/dictionaries.test.ts
-git commit -m "feat: add locale-prefixed home and docs route skeleton"
+git commit -m "feat: add locale-prefixed home and docs routes"
 ```
 
 ### Task 4: Build shared header, language switch, and navigation state

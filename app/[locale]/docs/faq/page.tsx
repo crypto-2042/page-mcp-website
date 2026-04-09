@@ -16,7 +16,7 @@ export default async function FaqPage({ params }: Props) {
   return (
     <div className="container docs-content docs-detail">
       <section className="panel section-block angular-cut">
-        <p className="kicker">FAQ</p>
+        <p className="kicker">{dict.faqPage.kicker}</p>
         <h1 className="title">{dict.faqPage.title}</h1>
         <p>{dict.faqPage.subtitle}</p>
       </section>

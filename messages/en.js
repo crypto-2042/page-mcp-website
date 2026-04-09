@@ -6,129 +6,129 @@ const en = {
     github: 'GitHub'
   },
   common: {
-    languageLabel: 'Language'
+    languageLabel: 'Language',
+    apiLabel: 'API',
+    descriptionLabel: 'Description'
   },
   home: {
-    kicker: 'WebMCP Polyfill & Enhancement',
-    title: 'Page MCP SDK',
+    kicker: 'Official SDK, browser adapter, and extension',
+    title: 'Page MCP',
     subtitle:
-      'Let web pages explain tools, resources, and workflows to AI agents through an MCP-aligned protocol.',
-    primaryCta: 'Get Started',
-    secondaryCta: 'View on GitHub',
-    sourceLabel: 'Synced to main',
-    sourceCommit: 'dec39e3',
-    installCommand: 'npm install @page-mcp/core @page-mcp/chat',
+      'Build AI-ready web pages with the SDK, bridge browser-facing WebMCP flows with the adapter, and use the browser extension to discover page capabilities.',
+    primaryCta: 'Read SDK Docs',
+    secondaryCta: 'View SDK on GitHub',
+    sourceLabel: 'Stable versions',
+    sourceCommit: 'SDK 3.1.0 · Plugin 1.2.3',
+    installCommand: 'npm install @page-mcp/core @page-mcp/webmcp-adapter',
+    terminalHead: 'root@page-mcp:~',
+    terminalLine1: 'register tools, resources, prompts, and skill extensions',
+    terminalLine2: 'connect local clients or the browser extension',
+    terminalStatus: 'status: ready',
     cards: [
       {
-        title: 'WebMCP Tool Alignment',
-        body: 'Implements registerTool-compatible fields with native/polyfill auto-detection.'
+        title: 'Page Runtime',
+        body: 'Expose tools, resources, prompts, and Page MCP skill extensions from your page with host/client runtime primitives.'
       },
       {
-        title: 'Resources + Skills',
-        body: 'Adds page resources and multi-step skills beyond baseline WebMCP capability.'
+        title: 'Browser Extension',
+        body: 'The Chrome extension auto-discovers page capabilities, reads resources, surfaces prompts, calls tools, and can inject chat when needed.'
       },
       {
-        title: 'Framework Adapters',
-        body: 'Ready packages for React, Vue 3, and Vue 2 plus embeddable chat widget.'
+        title: 'Adapters & UI',
+        body: 'Add protocol types, WebMCP adapter helpers, embeddable chat, and React/Vue integrations only where your app needs them.'
       }
     ]
   },
   docs: {
-    title: 'Documentation',
-    subtitle: 'Production skeleton with source-backed content from repository main.',
+    kicker: 'SDK DOCS',
+    title: 'SDK Documentation',
+    subtitle: 'Current package docs aligned with the shipped SDK and browser adapter layers.',
     quickStart: 'Quick Start',
     api: 'API',
     faq: 'FAQ',
     packageTitle: 'Packages',
     packageCards: [
-      { name: '@page-mcp/core', desc: 'Host, client, event bus, skill runner, polyfill', size: '~13 KB' },
-      { name: '@page-mcp/chat', desc: 'Embeddable AI widget with OpenAI-compatible API', size: '~38 KB' },
-      { name: '@page-mcp/react', desc: 'Provider + hooks adapter for React', size: '~3 KB' },
-      { name: '@page-mcp/vue3', desc: 'Plugin + composables adapter for Vue 3', size: '~3 KB' },
-      { name: '@page-mcp/vue2', desc: 'Plugin + mixin adapter for Vue 2', size: '~2 KB' }
+      { name: '@page-mcp/protocol', desc: 'Shared MCP, WebMCP, and Page MCP types/constants', size: 'types' },
+      { name: '@page-mcp/core', desc: 'Runtime host, client, EventBus, and capability registry', size: 'runtime' },
+      { name: '@page-mcp/webmcp-adapter', desc: 'Browser adapter, native detection, and polyfill helpers', size: 'adapter' },
+      { name: '@page-mcp/chat', desc: 'Embeddable chat widget for OpenAI-compatible or proxy backends', size: 'widget' },
+      { name: '@page-mcp/react', desc: 'Provider and hooks for React apps', size: 'React' },
+      { name: '@page-mcp/vue3', desc: 'Plugin and composables for Vue 3 apps', size: 'Vue 3' },
+      { name: '@page-mcp/vue2', desc: 'Plugin and mixin helpers for Vue 2 apps', size: 'Vue 2' }
     ]
   },
   quickStartPage: {
+    kicker: 'QUICK START',
     title: 'Quick Start',
-    subtitle: 'Install core packages, register tools, and connect an AI client.',
-    installTitle: 'Install',
-    installCode: `npm install @page-mcp/core\n# optional chat widget\nnpm install @page-mcp/chat\n# optional framework adapters\nnpm install @page-mcp/react @page-mcp/vue3 @page-mcp/vue2`,
-    exampleTitle: 'Basic Example (Vanilla)',
-    exampleCode: `import { PageMcpHost, PageMcpClient, EventBus, installWebMcpPolyfill } from '@page-mcp/core';\n\nconst bus = new EventBus();\nconst host = new PageMcpHost({ name: 'my-app', version: '1.0', bus });\n\nhost.registerTool({\n  name: 'searchProducts',\n  description: 'Search products by keyword',\n  inputSchema: {\n    type: 'object',\n    properties: { keyword: { type: 'string' } },\n    required: ['keyword']\n  },\n  execute: async (input) => searchProducts(input.keyword)\n});\n\nhost.start();\ninstallWebMcpPolyfill(host);\n\nconst client = new PageMcpClient({ bus });\nawait client.connect();\nconst result = await client.callTool('searchProducts', { keyword: 'headphones' });`,
-    tipsTitle: 'Implementation Notes',
-    tips: [
-      'Share one EventBus instance between host and client in the same page context.',
-      'Call host.start() before client.connect() to avoid connection errors.',
-      'Use inputSchema + annotations.readOnlyHint to match WebMCP expectations.',
-      'Use registerResource and registerSkill for richer capabilities beyond tool calls.'
-    ]
+    subtitle: 'Install the runtime, optionally add the browser adapter, and connect a local client.'
   },
   apiPage: {
+    kicker: 'API REFERENCE',
     title: 'API Reference',
-    subtitle: 'Public APIs exported from @page-mcp/core, @page-mcp/chat, and @page-mcp/react.',
+    subtitle: 'Public surfaces across the runtime, browser adapter, chat widget, and framework integrations.',
     coreTitle: '@page-mcp/core',
     coreMethods: [
-      { name: 'new EventBus({ timeout? })', desc: 'RPC transport between host and client.' },
-      { name: 'new PageMcpHost({ name, version, bus? })', desc: 'Page-side capability registry.' },
-      { name: 'host.registerTool(def)', desc: 'Register MCP-aligned tool action.' },
-      { name: 'host.registerResource(def)', desc: 'Register readable resource by URI.' },
-      { name: 'host.registerSkill(def)', desc: 'Register multi-step workflow.' },
-      { name: 'host.registerPrompt(def)', desc: 'Register prompt cards for AI widget.' },
-      { name: 'host.start()', desc: 'Start RPC listener and publish readiness.' },
-      { name: 'new PageMcpClient({ bus?, connectTimeout? })', desc: 'AI-side invocation client.' },
-      { name: 'client.connect()', desc: 'Connect and get HostInfo.' },
+      { name: 'new EventBus({ timeout? })', desc: 'In-memory RPC transport for same-page or shared-context setups.' },
+      { name: 'new PageMcpHost({ name, version, strictProtocol?, bus?, transport?, skills? })', desc: 'Register tools, resources, prompts, and skills on the page side.' },
+      { name: 'host.registerTool()/unregisterTool()', desc: 'Manage page-exposed tools.' },
+      { name: 'host.registerResource()/unregisterResource()', desc: 'Manage readable page resources by URI.' },
+      { name: 'host.registerPrompt()/unregisterPrompt()', desc: 'Manage reusable prompt entries.' },
+      { name: 'host.registerSkill()/unregisterSkill()', desc: 'Manage Page MCP extension workflows.' },
+      { name: 'host.start()/destroy()', desc: 'Start or tear down the host runtime.' },
+      { name: 'new PageMcpClient({ bus?, transport?, connectTimeout? })', desc: 'Create a caller for the page-side host.' },
+      { name: 'client.connect()/disconnect()', desc: 'Open or close the client connection.' },
       { name: 'client.listTools()/callTool()', desc: 'Discover and invoke tools.' },
-      { name: 'client.listResources()/readResource()', desc: 'Read exposed page resources.' },
-      { name: 'client.listSkills()/executeSkill()', desc: 'Run skills and receive SkillResult.' },
-      { name: 'installWebMcpPolyfill(host, opts?)', desc: 'Polyfill navigator.modelContext in non-native browsers.' }
+      { name: 'client.listResources()/readResource()', desc: 'List and read page resources.' },
+      { name: 'client.listPrompts()/getPrompt()', desc: 'List prompts and resolve prompt payloads.' },
+      { name: 'Extensions.createSkillsClient(client)', desc: 'Create a skills client for Page MCP skill extensions.' }
+    ],
+    protocolTitle: '@page-mcp/protocol',
+    protocolMethods: [
+      {
+        name: 'PageMcpToolDefinition / ResourceDefinition / PromptDefinition',
+        desc: 'Shared registration types for tools, resources, and prompts.'
+      },
+      {
+        name: 'AnthropicMcpTool / Resource / Prompt',
+        desc: 'MCP-compatible protocol shapes exported for adapters and tooling.'
+      },
+      {
+        name: 'MCP_METHODS',
+        desc: 'Constants for MCP request / response method names.'
+      }
+    ],
+    adapterTitle: '@page-mcp/webmcp-adapter',
+    adapterMethods: [
+      { name: 'installWebMcpPolyfill(host, opts?)', desc: 'Expose a browser-facing modelContext polyfill for a PageMcpHost.' },
+      { name: 'isWebMcpSupported()', desc: 'Detect whether the browser already provides a native WebMCP surface.' },
+      { name: 'toWebMcpTool()/fromWebMcpTool()', desc: 'Convert between WebMCP-style tool objects and Page MCP definitions.' }
     ],
     chatTitle: '@page-mcp/chat',
     chatMethods: [
-      { name: 'init(config)', desc: 'Mount chat widget and connect OpenAI-compatible backend.' },
-      { name: 'config.openai', desc: 'Direct OpenAI config (apiKey/baseURL/model).' },
-      { name: 'config.endpoint', desc: 'Proxy endpoint alternative to direct OpenAI mode.' },
-      { name: 'config.theme/position/expandMode', desc: 'Visual and behavior controls.' },
-      { name: 'widget.open()/close()/destroy()', desc: 'Programmatic lifecycle control.' }
+      { name: 'init(config)', desc: 'Mount the chat widget and bind it to your Page MCP runtime.' },
+      { name: 'getInstance()/destroy()', desc: 'Access or tear down the singleton widget instance.' },
+      { name: 'config.openai', desc: 'Direct OpenAI-compatible settings such as apiKey, model, and baseURL.' },
+      { name: 'config.endpoint', desc: 'Send chat traffic through your own backend endpoint instead of direct API mode.' },
+      { name: 'config.bus/defaultAttachedResources', desc: 'Reuse a shared bus and preselect resources for the widget.' },
+      { name: 'config.theme/position/expandMode', desc: 'Configure visual presentation and widget behavior.' },
+      { name: 'widget.open()/close()/destroy()', desc: 'Programmatically control the widget lifecycle.' }
     ],
-    reactTitle: '@page-mcp/react',
+    reactTitle: 'Adapters & Integrations',
     reactMethods: [
-      { name: '<PageMcpProvider name version>', desc: 'Provides host/client/bus through React context.' },
-      { name: 'usePageMcpHost/usePageMcpClient/usePageMcpBus', desc: 'Access MCP instances in components.' },
-      { name: 'useRegisterTool/useRegisterResource/useRegisterSkill/useRegisterPrompt', desc: 'Declarative registration hooks.' }
+      { name: '@page-mcp/react PageMcpProvider/usePageMcp*', desc: 'Provide and access host, client, and bus from React components.' },
+      { name: '@page-mcp/react useRegisterTool/useRegisterResource/useRegisterPrompt/useRegisterSkill', desc: 'Register capabilities declaratively with React lifecycle hooks.' },
+      { name: '@page-mcp/react usePageMcpSkills()', desc: 'Access the Page MCP skills extension client from React.' },
+      { name: '@page-mcp/vue3 PageMcpPlugin/PageMcpProvider/composables', desc: 'Integrate Page MCP with Vue 3 apps.' },
+      { name: '@page-mcp/vue2 PageMcpPlugin/pageMcpMixin', desc: 'Integrate Page MCP with Vue 2 apps.' }
     ]
   },
   faqPage: {
+    kicker: 'FAQ',
     title: 'FAQ',
-    subtitle: 'Common integration questions from the current repository behavior.',
-    items: [
-      {
-        q: 'Do I need browser native WebMCP support to use this SDK?',
-        a: 'No. The SDK provides installWebMcpPolyfill and auto-detection, so core flows still work in regular browsers.'
-      },
-      {
-        q: 'What is required at minimum?',
-        a: 'Only @page-mcp/core is required. Chat widget and framework adapters are optional extensions.'
-      },
-      {
-        q: 'How do host and client communicate?',
-        a: 'Through EventBus RPC. In one page, share the same EventBus instance between PageMcpHost and PageMcpClient.'
-      },
-      {
-        q: 'Are resources and skills part of WebMCP standard?',
-        a: 'No. Tools are WebMCP-aligned; resources and skills are SDK enhancements.'
-      },
-      {
-        q: 'Can the chat widget use non-OpenAI backends?',
-        a: 'Yes. It supports OpenAI-compatible endpoints through baseURL or endpoint proxy configuration.'
-      },
-      {
-        q: 'How can I confirm exact API details?',
-        a: 'Check packages/core/src/index.ts and related package READMEs in main@dec39e3 for authoritative exports.'
-      }
-    ]
+    subtitle: 'Common questions based on the current SDK, adapter, chat, and extension behavior.'
   },
   footer: {
-    text: 'Page MCP SDK official site.'
+    text: 'Official website for Page MCP.'
   }
 };
 

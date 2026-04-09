@@ -13,14 +13,14 @@ type ApiGroup = {
   rows: ApiRow[];
 };
 
-function ApiTable({ rows }: { rows: ApiRow[] }) {
+function ApiTable({ rows, apiLabel, descriptionLabel }: { rows: ApiRow[]; apiLabel: string; descriptionLabel: string }) {
   return (
     <div className="api-table-wrap">
       <table className="api-table">
         <thead>
           <tr>
-            <th>API</th>
-            <th>Description</th>
+            <th>{apiLabel}</th>
+            <th>{descriptionLabel}</th>
           </tr>
         </thead>
         <tbody>
@@ -45,6 +45,7 @@ export default async function ApiPage({ params }: Props) {
 
   const groups: ApiGroup[] = [
     { id: 'core', title: dict.apiPage.coreTitle, rows: dict.apiPage.coreMethods },
+    { id: 'adapter', title: dict.apiPage.adapterTitle, rows: dict.apiPage.adapterMethods },
     { id: 'chat', title: dict.apiPage.chatTitle, rows: dict.apiPage.chatMethods },
     { id: 'react', title: dict.apiPage.reactTitle, rows: dict.apiPage.reactMethods }
   ];
@@ -52,7 +53,7 @@ export default async function ApiPage({ params }: Props) {
   return (
     <div className="container docs-content docs-detail">
       <section className="panel section-block angular-cut">
-        <p className="kicker">API REFERENCE</p>
+        <p className="kicker">{dict.apiPage.kicker}</p>
         <h1 className="title">{dict.apiPage.title}</h1>
         <p>{dict.apiPage.subtitle}</p>
       </section>
@@ -68,7 +69,7 @@ export default async function ApiPage({ params }: Props) {
       {groups.map((group) => (
         <details className="panel section-block api-group" key={group.id} id={group.id} open>
           <summary className="title section-title">{group.title}</summary>
-          <ApiTable rows={group.rows} />
+          <ApiTable rows={group.rows} apiLabel={dict.common.apiLabel} descriptionLabel={dict.common.descriptionLabel} />
         </details>
       ))}
     </div>

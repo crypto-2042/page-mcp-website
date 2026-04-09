@@ -1,19 +1,23 @@
 ## 必须依赖浏览器原生 WebMCP 吗？
 
-不需要。通过 `installWebMcpPolyfill` 可在常规浏览器中运行 MCP 对齐能力。
+不需要。若你需要 `navigator.modelContext` 风格的注册接口，可通过 `@page-mcp/webmcp-adapter` 提供的 `installWebMcpPolyfill()` 在常规浏览器中启用。
 
 ## 最小依赖是什么？
 
-只需要 `@page-mcp/core`。聊天组件和框架适配层是可选项。
+运行时只需要 `@page-mcp/core`；若需要共享类型可加 `@page-mcp/protocol`；若需要浏览器侧 WebMCP 兼容层则再加 `@page-mcp/webmcp-adapter`。
 
 ## Host 与 Client 如何通信？
 
-通过 `EventBus` RPC。在同页部署时建议共享同一个 `EventBus`。
+通过 `EventBus` RPC。在同页部署时建议共享同一个 `EventBus` 实例。
 
-## Resources 与 Skills 属于 WebMCP 标准吗？
+## Page MCP 在 MCP / WebMCP 之上增加了什么？
 
-不属于。Tools 与 WebMCP 对齐，Resources/Skills 是 SDK 扩展能力。
+Page MCP 保持工具、资源、提示的 MCP 兼容形态，增加浏览器适配层，并以 skills 作为扩展能力面。
 
-## 聊天组件可以接非 OpenAI 后端吗？
+## 浏览器扩展在整个体系中承担什么角色？
 
-可以，`@page-mcp/chat` 支持 OpenAI 兼容 `baseURL` 或代理 `endpoint`。
+扩展负责发现页面暴露的工具、资源、提示与远程技能，并可在支持场景中注入聊天界面。
+
+## 聊天组件可以接入非 OpenAI 官方后端吗？
+
+可以。`@page-mcp/chat` 支持通过 `baseURL` 接入 OpenAI 兼容接口，也支持走 `endpoint` 代理模式。

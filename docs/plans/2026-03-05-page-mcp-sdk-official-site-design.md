@@ -1,20 +1,20 @@
-# Page MCP SDK Official Site Design
+# Page MCP Official Site Design
 
 ## Scope
-Build an official multi-page documentation website for `https://github.com/crypto-2042/page-mcp-sdk` with Next.js App Router, bilingual support (English/Chinese), and a production-ready skeleton.
+Build an official multi-page documentation website for the Page MCP project family with Next.js App Router, bilingual support (English/Chinese), and a production-ready foundation.
 
 ## Product Decisions
 - Site type: Multi-page docs website
 - Language support: EN + ZH switchable
 - Stack: Next.js (App Router)
-- Delivery depth (phase 1): Launchable skeleton
+- Delivery depth (phase 1): Launchable foundation
 
 ## Information Architecture
 - `/{locale}`: Home
 - `/{locale}/docs`: Docs home
-- `/{locale}/docs/quick-start`: Quick start skeleton
-- `/{locale}/docs/api`: API skeleton
-- `/{locale}/docs/faq`: FAQ skeleton
+- `/{locale}/docs/quick-start`: Quick start page
+- `/{locale}/docs/api`: API page
+- `/{locale}/docs/faq`: FAQ page
 
 Global navigation:
 - Home
@@ -59,7 +59,7 @@ Interactions:
 ## Error Handling
 - Invalid locale -> redirect to default locale (`en`).
 - Missing dictionary keys -> fail fast in dev (no silent fallback).
-- Skeleton pages with explicit “Coming soon” sections where content is pending.
+- Incomplete sections should be explicit where content is still pending.
 
 ## Testing Scope (Phase 1)
 - Route availability for all locale + docs pages.

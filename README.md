@@ -1,35 +1,62 @@
-# Page MCP SDK Official Website
+# Page MCP Official Website
 
-Bilingual Next.js website skeleton for `page-mcp-sdk`.
+Bilingual Next.js website for the Page MCP ecosystem. It serves the public-facing homepage plus SDK docs, while also reflecting how the browser extension fits into the overall Page MCP workflow.
 
-## Scripts
+## What This Site Covers
 
-- `npm install`
-- `npm run dev`
-- `npm run test`
-- `npm run lint`
-- `npm run build`
+- marketing homepage for **Page MCP**
+- bilingual docs in English and Chinese
+- SDK-focused reference pages:
+  - `/[locale]/docs/quick-start`
+  - `/[locale]/docs/api`
+  - `/[locale]/docs/faq`
+- shared positioning for the SDK, browser extension, WebMCP adapter, and chat/widget ecosystem
 
-## Route Map
+Current locales:
+- `/en`
+- `/zh`
 
-- `/en`, `/zh`
-- `/en/docs`, `/zh/docs`
-- `/en/docs/quick-start`, `/zh/docs/quick-start`
-- `/en/docs/api`, `/zh/docs/api`
-- `/en/docs/faq`, `/zh/docs/faq`
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+Useful verification commands:
+
+```bash
+npm run test   # node:test checks for i18n utilities
+npm run lint   # eslint
+npm run build  # production build
+```
+
+## Content Sources of Truth
+
+When updating website copy, verify claims against:
+
+- `../page-mcp-sdk/README.md`
+- `../page-mcp-sdk/packages/*/README.md`
+- `../page-mcp-plugin/README.md`
+
+The website should describe **currently shipped behavior only**. Do not add roadmap promises or unsupported claims.
+
+## Project Structure
+
+- `app/` — routes, metadata, OG/Twitter image generation
+- `content/docs/` — MDX docs content (`en/`, `zh/`)
+- `messages/` — bilingual UI copy dictionaries
+- `components/` — shared layout/navigation pieces
+- `lib/` — i18n and site config helpers
+- `tests/` — lightweight site and locale checks
 
 ## SEO & Verification
 
 - `robots.txt`: `/robots.txt`
 - `sitemap.xml`: `/sitemap.xml`
-- OG image route: `/opengraph-image`
-- Twitter image route: `/twitter-image`
+- Open Graph image: `/opengraph-image`
+- Twitter image: `/twitter-image`
 
-Set these environment variables in Vercel for search engine ownership verification:
-
+Optional Vercel env vars:
 - `GOOGLE_SITE_VERIFICATION`
 - `BING_SITE_VERIFICATION`
-
-Checklist:
-
-- `docs/seo/submission-checklist.md`

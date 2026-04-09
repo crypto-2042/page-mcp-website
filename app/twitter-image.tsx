@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Page MCP SDK — WebMCP Polyfill & AI MCP Skills';
+export const alt = 'Page MCP — SDK, browser extension, and AI-ready pages';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -23,10 +23,10 @@ export default function Image() {
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           <div style={{ fontSize: 24, letterSpacing: 4, textTransform: 'uppercase', color: '#47f5ff' }}>
-            WebMCP Polyfill & Enhancement
+            SDK + Browser Extension
           </div>
-          <div style={{ fontSize: 76, fontWeight: 800, letterSpacing: 2 }}>Page MCP SDK</div>
-          <div style={{ fontSize: 36, color: '#b9c3de' }}>AI MCP Tools, Resources, and Skills</div>
+          <div style={{ fontSize: 76, fontWeight: 800, letterSpacing: 2 }}>Page MCP</div>
+          <div style={{ fontSize: 36, color: '#b9c3de' }}>AI-ready pages, tools, resources, prompts, and workflows</div>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -39,7 +39,7 @@ export default function Image() {
               padding: '10px 16px'
             }}
           >
-            webmcp • ai mcp • mcp skills
+            sdk • browser extension • ai-ready pages
           </div>
         </div>
       </div>

@@ -6,128 +6,128 @@ const zh = {
     github: 'GitHub'
   },
   common: {
-    languageLabel: '语言'
+    languageLabel: '语言',
+    apiLabel: 'API',
+    descriptionLabel: '说明'
   },
   home: {
-    kicker: 'WebMCP Polyfill 与增强',
-    title: 'Page MCP SDK',
-    subtitle: '让网页通过 MCP 对齐协议向 AI 主动暴露工具、资源与多步骤工作流。',
-    primaryCta: '快速开始',
-    secondaryCta: '查看 GitHub',
-    sourceLabel: '同步 main',
-    sourceCommit: 'dec39e3',
-    installCommand: 'npm install @page-mcp/core @page-mcp/chat',
+    kicker: '官方 SDK、浏览器适配层与扩展',
+    title: 'Page MCP',
+    subtitle: '使用 SDK 构建 AI 可理解的网页能力，通过浏览器适配层桥接 WebMCP 场景，并借助浏览器扩展发现页面能力。',
+    primaryCta: '查看 SDK 文档',
+    secondaryCta: '查看 SDK 仓库',
+    sourceLabel: '稳定版本',
+    sourceCommit: 'SDK 3.1.0 · Plugin 1.2.3',
+    installCommand: 'npm install @page-mcp/core @page-mcp/webmcp-adapter',
+    terminalHead: 'root@page-mcp:~',
+    terminalLine1: '注册 tools、resources、prompts 与 skill 扩展',
+    terminalLine2: '连接本地 client 或浏览器扩展',
+    terminalStatus: 'status: ready',
     cards: [
       {
-        title: 'WebMCP 工具对齐',
-        body: '实现与 registerTool 字段兼容，并支持原生/Polyfill 自动识别。'
+        title: '页面运行时',
+        body: '通过页面侧运行时原语，把 tools、resources、prompts 与 Page MCP skill 扩展暴露给 AI。'
       },
       {
-        title: '资源与技能',
-        body: '在 WebMCP 基础上扩展资源读取与多步骤技能编排能力。'
+        title: '浏览器扩展',
+        body: 'Chrome 扩展会自动发现页面能力、读取资源、展示 prompts、调用工具，并在需要时注入聊天界面。'
       },
       {
-        title: '框架适配层',
-        body: '提供 React、Vue3、Vue2 以及可嵌入聊天组件。'
+        title: '适配层与 UI',
+        body: '按需组合协议类型、WebMCP 适配辅助、可嵌入聊天组件，以及 React / Vue 集成层。'
       }
     ]
   },
   docs: {
-    title: '文档中心',
-    subtitle: '基于仓库 main 分支构建的首版可上线骨架与实质内容。',
+    kicker: 'SDK 文档',
+    title: 'SDK 文档',
+    subtitle: '与当前已发布 SDK 及浏览器适配层保持一致的包级文档。',
     quickStart: '快速开始',
     api: 'API',
     faq: '常见问题',
     packageTitle: '包列表',
     packageCards: [
-      { name: '@page-mcp/core', desc: 'Host、Client、EventBus、SkillRunner、Polyfill', size: '~13 KB' },
-      { name: '@page-mcp/chat', desc: '兼容 OpenAI API 的可嵌入 AI 聊天组件', size: '~38 KB' },
-      { name: '@page-mcp/react', desc: 'React Provider 与 Hooks 适配层', size: '~3 KB' },
-      { name: '@page-mcp/vue3', desc: 'Vue3 插件与组合式 API 适配层', size: '~3 KB' },
-      { name: '@page-mcp/vue2', desc: 'Vue2 插件与 mixin 适配层', size: '~2 KB' }
+      { name: '@page-mcp/protocol', desc: '共享 MCP、WebMCP 与 Page MCP 类型和常量', size: 'types' },
+      { name: '@page-mcp/core', desc: '运行时 host、client、EventBus 与能力注册中心', size: 'runtime' },
+      { name: '@page-mcp/webmcp-adapter', desc: '浏览器适配层、原生能力探测与 polyfill 辅助', size: 'adapter' },
+      { name: '@page-mcp/chat', desc: '支持 OpenAI 兼容接口或代理后端的可嵌入聊天组件', size: 'widget' },
+      { name: '@page-mcp/react', desc: '面向 React 应用的 Provider 与 Hooks', size: 'React' },
+      { name: '@page-mcp/vue3', desc: '面向 Vue 3 应用的插件与组合式接口', size: 'Vue 3' },
+      { name: '@page-mcp/vue2', desc: '面向 Vue 2 应用的插件与 mixin 辅助', size: 'Vue 2' }
     ]
   },
   quickStartPage: {
+    kicker: '快速开始',
     title: '快速开始',
-    subtitle: '安装核心包、注册工具，并连接 AI 客户端。',
-    installTitle: '安装',
-    installCode: `npm install @page-mcp/core\n# 可选：聊天组件\nnpm install @page-mcp/chat\n# 可选：框架适配层\nnpm install @page-mcp/react @page-mcp/vue3 @page-mcp/vue2`,
-    exampleTitle: '基础示例（Vanilla）',
-    exampleCode: `import { PageMcpHost, PageMcpClient, EventBus, installWebMcpPolyfill } from '@page-mcp/core';\n\nconst bus = new EventBus();\nconst host = new PageMcpHost({ name: 'my-app', version: '1.0', bus });\n\nhost.registerTool({\n  name: 'searchProducts',\n  description: '按关键词搜索商品',\n  inputSchema: {\n    type: 'object',\n    properties: { keyword: { type: 'string' } },\n    required: ['keyword']\n  },\n  execute: async (input) => searchProducts(input.keyword)\n});\n\nhost.start();\ninstallWebMcpPolyfill(host);\n\nconst client = new PageMcpClient({ bus });\nawait client.connect();\nconst result = await client.callTool('searchProducts', { keyword: 'headphones' });`,
-    tipsTitle: '实现建议',
-    tips: [
-      '同页场景下让 Host 与 Client 共享同一个 EventBus。',
-      '先执行 host.start()，再 client.connect()，避免连接错误。',
-      '使用 inputSchema 与 annotations.readOnlyHint 保持 WebMCP 语义一致。',
-      '资源与技能用于扩展工具调用之外的页面能力。'
-    ]
+    subtitle: '先安装运行时，按需添加浏览器适配层，然后连接本地 client。'
   },
   apiPage: {
+    kicker: 'API 参考',
     title: 'API 参考',
-    subtitle: '来自 @page-mcp/core、@page-mcp/chat、@page-mcp/react 的公开接口。',
+    subtitle: '覆盖运行时、浏览器适配层、聊天组件与框架集成的公开接口。',
     coreTitle: '@page-mcp/core',
     coreMethods: [
-      { name: 'new EventBus({ timeout? })', desc: 'Host 与 Client 之间的 RPC 通道。' },
-      { name: 'new PageMcpHost({ name, version, bus? })', desc: '页面侧能力注册中心。' },
-      { name: 'host.registerTool(def)', desc: '注册 MCP 对齐的工具动作。' },
-      { name: 'host.registerResource(def)', desc: '按 URI 注册可读取资源。' },
-      { name: 'host.registerSkill(def)', desc: '注册多步骤技能流程。' },
-      { name: 'host.registerPrompt(def)', desc: '注册聊天组件可用的提示卡片。' },
-      { name: 'host.start()', desc: '启动 RPC 监听并广播就绪状态。' },
-      { name: 'new PageMcpClient({ bus?, connectTimeout? })', desc: 'AI 侧调用客户端。' },
-      { name: 'client.connect()', desc: '连接并获取 HostInfo。' },
+      { name: 'new EventBus({ timeout? })', desc: '面向同页或共享上下文场景的内存 RPC 传输。' },
+      { name: 'new PageMcpHost({ name, version, strictProtocol?, bus?, transport?, skills? })', desc: '在页面侧注册工具、资源、Prompt 与技能。' },
+      { name: 'host.registerTool()/unregisterTool()', desc: '管理页面暴露的工具能力。' },
+      { name: 'host.registerResource()/unregisterResource()', desc: '按 URI 管理可读页面资源。' },
+      { name: 'host.registerPrompt()/unregisterPrompt()', desc: '管理可复用 Prompt 条目。' },
+      { name: 'host.registerSkill()/unregisterSkill()', desc: '管理 Page MCP 扩展的多步骤技能。' },
+      { name: 'host.start()/destroy()', desc: '启动或销毁 host 运行时。' },
+      { name: 'new PageMcpClient({ bus?, transport?, connectTimeout? })', desc: '创建页面能力调用端。' },
+      { name: 'client.connect()/disconnect()', desc: '建立或关闭 client 连接。' },
       { name: 'client.listTools()/callTool()', desc: '发现并调用工具。' },
-      { name: 'client.listResources()/readResource()', desc: '读取页面资源。' },
-      { name: 'client.listSkills()/executeSkill()', desc: '执行技能并返回 SkillResult。' },
-      { name: 'installWebMcpPolyfill(host, opts?)', desc: '在非原生浏览器中注入 modelContext polyfill。' }
+      { name: 'client.listResources()/readResource()', desc: '列出并读取页面资源。' },
+      { name: 'client.listPrompts()/getPrompt()', desc: '列出 Prompt 并解析 Prompt 内容。' },
+      { name: 'Extensions.createSkillsClient(client)', desc: '创建用于 Page MCP skill 扩展的技能客户端。' }
+    ],
+    protocolTitle: '@page-mcp/protocol',
+    protocolMethods: [
+      {
+        name: 'PageMcpToolDefinition / ResourceDefinition / PromptDefinition',
+        desc: 'tools、resources 与 prompts 注册时使用的共享定义类型。'
+      },
+      {
+        name: 'AnthropicMcpTool / Resource / Prompt',
+        desc: '供适配层和工具链使用的 MCP 兼容协议结构。'
+      },
+      {
+        name: 'MCP_METHODS',
+        desc: 'MCP 请求 / 响应方法名常量。'
+      }
+    ],
+    adapterTitle: '@page-mcp/webmcp-adapter',
+    adapterMethods: [
+      { name: 'installWebMcpPolyfill(host, opts?)', desc: '为 PageMcpHost 暴露浏览器侧 modelContext polyfill。' },
+      { name: 'isWebMcpSupported()', desc: '检测浏览器是否已提供原生 WebMCP 接口。' },
+      { name: 'toWebMcpTool()/fromWebMcpTool()', desc: '在 WebMCP 风格工具对象与 Page MCP 定义之间转换。' }
     ],
     chatTitle: '@page-mcp/chat',
     chatMethods: [
-      { name: 'init(config)', desc: '挂载聊天组件并连接 OpenAI 兼容后端。' },
-      { name: 'config.openai', desc: '直接 OpenAI 配置（apiKey/baseURL/model）。' },
-      { name: 'config.endpoint', desc: '通过后端代理端点替代直连模式。' },
-      { name: 'config.theme/position/expandMode', desc: '外观和交互行为配置。' },
-      { name: 'widget.open()/close()/destroy()', desc: '编程式生命周期控制。' }
+      { name: 'init(config)', desc: '挂载聊天组件并绑定到 Page MCP 运行时。' },
+      { name: 'getInstance()/destroy()', desc: '读取或销毁当前单例 widget。' },
+      { name: 'config.openai', desc: '直连 OpenAI 兼容接口时使用的 apiKey、model、baseURL 等配置。' },
+      { name: 'config.endpoint', desc: '通过自有后端 endpoint 转发请求，替代浏览器直连模式。' },
+      { name: 'config.bus/defaultAttachedResources', desc: '复用共享 bus，并为聊天组件预选资源。' },
+      { name: 'config.theme/position/expandMode', desc: '配置外观与交互行为。' },
+      { name: 'widget.open()/close()/destroy()', desc: '以编程方式控制组件生命周期。' }
     ],
-    reactTitle: '@page-mcp/react',
+    reactTitle: '适配层与集成',
     reactMethods: [
-      { name: '<PageMcpProvider name version>', desc: '通过 React Context 提供 host/client/bus。' },
-      { name: 'usePageMcpHost/usePageMcpClient/usePageMcpBus', desc: '在组件中访问 MCP 实例。' },
-      { name: 'useRegisterTool/useRegisterResource/useRegisterSkill/useRegisterPrompt', desc: '声明式注册能力。' }
+      { name: '@page-mcp/react PageMcpProvider/usePageMcp*', desc: '在 React 组件中提供并访问 host、client、bus。' },
+      { name: '@page-mcp/react useRegisterTool/useRegisterResource/useRegisterPrompt/useRegisterSkill', desc: '通过 React 生命周期声明式注册能力。' },
+      { name: '@page-mcp/react usePageMcpSkills()', desc: '在 React 中访问 Page MCP 的 skills 扩展客户端。' },
+      { name: '@page-mcp/vue3 PageMcpPlugin/PageMcpProvider/composables', desc: '把 Page MCP 集成到 Vue 3 应用中。' },
+      { name: '@page-mcp/vue2 PageMcpPlugin/pageMcpMixin', desc: '把 Page MCP 集成到 Vue 2 应用中。' }
     ]
   },
   faqPage: {
+    kicker: '常见问题',
     title: '常见问题',
-    subtitle: '基于当前仓库行为整理的接入问题。',
-    items: [
-      {
-        q: '必须依赖浏览器原生 WebMCP 吗？',
-        a: '不需要。SDK 提供 installWebMcpPolyfill，并支持原生能力自动识别。'
-      },
-      {
-        q: '最小依赖是什么？',
-        a: '仅 @page-mcp/core 是必需；聊天组件和框架适配层均为可选。'
-      },
-      {
-        q: 'Host 与 Client 如何通信？',
-        a: '通过 EventBus RPC。在同一页面内建议共享同一个 EventBus 实例。'
-      },
-      {
-        q: 'Resources 与 Skills 属于 WebMCP 标准吗？',
-        a: '不是。Tools 与 WebMCP 对齐；Resources/Skills 属于 SDK 扩展。'
-      },
-      {
-        q: '聊天组件能接入非 OpenAI 官方后端吗？',
-        a: '可以，支持通过 baseURL 或 endpoint 连接 OpenAI 兼容接口。'
-      },
-      {
-        q: '如何核对精确 API？',
-        a: '以 main@dec39e3 中 packages/core/src/index.ts 及各包 README 为准。'
-      }
-    ]
+    subtitle: '基于当前 SDK、适配层、聊天组件与扩展行为整理的常见问题。'
   },
   footer: {
-    text: 'Page MCP SDK 官方站点。'
+    text: 'Page MCP 官方网站。'
   }
 };
 

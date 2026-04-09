@@ -16,7 +16,7 @@ export default async function QuickStartPage({ params }: Props) {
   return (
     <div className="container docs-content docs-detail">
       <section className="panel section-block angular-cut">
-        <p className="kicker">QUICK START</p>
+        <p className="kicker">{dict.quickStartPage.kicker}</p>
         <h1 className="title">{dict.quickStartPage.title}</h1>
         <p>{dict.quickStartPage.subtitle}</p>
       </section>

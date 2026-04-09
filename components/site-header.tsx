@@ -19,7 +19,7 @@ export function SiteHeader({ locale, dictionary }: Props) {
     <header className="site-header panel">
       <div className="container header-inner">
         <Link href={`/${locale}`} className="brand title">
-          PAGE MCP SDK
+          PAGE MCP
         </Link>
         <nav className="site-nav" aria-label="Primary">
           <Link href={`/${locale}`} className={!isDocs ? 'active' : ''}>

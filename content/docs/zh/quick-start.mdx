@@ -2,28 +2,32 @@
 
 ```bash
 npm install @page-mcp/core
-# 可选
-npm install @page-mcp/chat
-npm install @page-mcp/react @page-mcp/vue3 @page-mcp/vue2
+# 可选：共享类型
+npm install @page-mcp/protocol
+# 可选：浏览器适配层
+npm install @page-mcp/webmcp-adapter
+# 可选：UI / 框架集成包
+npm install @page-mcp/chat @page-mcp/react @page-mcp/vue3 @page-mcp/vue2
 ```
 
 ## 最小可用流程（Vanilla）
 
 ```ts
-import { PageMcpHost, PageMcpClient, EventBus, installWebMcpPolyfill } from '@page-mcp/core';
+import { EventBus, PageMcpClient, PageMcpHost } from '@page-mcp/core';
+import { installWebMcpPolyfill } from '@page-mcp/webmcp-adapter';
 
 const bus = new EventBus();
-const host = new PageMcpHost({ name: 'my-app', version: '1.0', bus });
+const host = new PageMcpHost({ name: 'my-app', version: '1.0.0', bus });
 
 host.registerTool({
-  name: 'searchProducts',
+  name: 'search_products',
   description: '按关键词搜索商品',
   inputSchema: {
     type: 'object',
     properties: { keyword: { type: 'string' } },
     required: ['keyword']
   },
-  execute: async (input) => searchProducts(input.keyword)
+  execute: async (input) => [{ keyword: String(input.keyword ?? '') }]
 });
 
 host.start();
@@ -31,12 +35,15 @@ installWebMcpPolyfill(host);
 
 const client = new PageMcpClient({ bus });
 await client.connect();
-await client.callTool('searchProducts', { keyword: 'headphones' });
+
+const tools = await client.toolsList();
+const result = await client.toolsCall('search_products', { keyword: 'headphones' });
 ```
 
 ## 实践建议
 
-- 同页场景共享同一个 `EventBus`。
+- 在同页场景中共享同一个 `EventBus`。
 - 先启动 host，再连接 client。
-- 使用 `inputSchema` 与 `annotations.readOnlyHint` 优化 Agent 调用质量。
-- 使用 `registerResource` 与 `registerSkill` 描述更复杂页面能力。
+- `installWebMcpPolyfill()` 来自 `@page-mcp/webmcp-adapter`，而不是 `@page-mcp/core`。
+- 当你需要更丰富的能力发现时，可结合资源、提示与 `Extensions.createSkillsClient(client)`。
+- 浏览器扩展可以发现通过 Page MCP 流程暴露的工具、资源、提示与远程技能。

@@ -20,19 +20,20 @@ const verification = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | WebMCP Polyfill & AI MCP Skills`,
+    default: `${SITE_NAME} | SDK and browser extension for AI-ready web pages`,
     template: `%s | ${SITE_NAME}`
   },
   description:
-    'Official Page MCP SDK site for WebMCP polyfill, AI MCP tools, resources, and skills across modern web frameworks.',
+    'Official Page MCP website for the SDK, browser extension, WebMCP adapter, chat widget, and framework integrations.',
   keywords: [
-    'webmcp',
-    'ai mcp',
-    'mcp skills',
+    'page mcp',
     'page mcp sdk',
+    'page mcp extension',
+    'webmcp',
     'mcp tools',
     'mcp resources',
-    'webmcp polyfill',
+    'mcp prompts',
+    'browser extension',
     'ai agents',
     'react mcp',
     'vue mcp'
@@ -44,23 +45,23 @@ export const metadata: Metadata = {
     type: 'website',
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | WebMCP Polyfill & AI MCP Skills`,
+    title: `${SITE_NAME} | SDK and browser extension for AI-ready web pages`,
     description:
-      'Build AI-ready web pages with MCP tools, resources, and skills using Page MCP SDK.',
+      'Build MCP-capable pages with the SDK and discover tools, resources, prompts, and skills with the browser extension.',
     images: [
       {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} WebMCP and AI MCP Skills`
+        alt: `${SITE_NAME} SDK and browser extension`
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${SITE_NAME} | WebMCP Polyfill & AI MCP Skills`,
+    title: `${SITE_NAME} | SDK and browser extension for AI-ready web pages`,
     description:
-      'Official Page MCP SDK docs and examples for WebMCP-compatible AI page capabilities.',
+      'Official Page MCP docs and examples for the SDK, browser extension, and WebMCP adapter.',
     images: ['/twitter-image']
   },
   verification,
